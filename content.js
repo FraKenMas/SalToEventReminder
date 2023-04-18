@@ -49,16 +49,35 @@ function displayButton() {
   console.log(subtitle);
   console.log(description);
 
-  // create a button element
-  const button = document.createElement("button");
-  button.innerHTML = "Ricordamelo";
-  
-  // append the button to the desired element on the page
-  const targetElement = document.querySelector(".left");
-  targetElement.appendChild(button);
+  // Create the button element
+  const floatButton = document.createElement("button");
+  floatButton.id = "floatButton";
+  floatButton.title = "Add to calendar";
+
+  // Add the "+" icon to the button
+  const plusIcon = document.createElement("i");
+  plusIcon.className = "fa  fa-calendar-plus";
+  floatButton.appendChild(plusIcon);
+
+  // Add styles to the button
+  floatButton.style.position = "fixed";
+  floatButton.style.bottom = "20px";
+  floatButton.style.right = "20px";
+  floatButton.style.width = "50px";
+  floatButton.style.height = "50px";
+  floatButton.style.borderRadius = "50%";
+  floatButton.style.backgroundColor = "#fabe0a";
+  floatButton.style.borderColor = "transparent";
+  floatButton.style.color = "#fff";
+  floatButton.style.fontSize = "24px";
+  floatButton.style.textAlign = "center";
+  floatButton.style.lineHeight = "50px";
+
+  // Append the button to the body of the page
+  document.body.appendChild(floatButton);
 
   // add a click listener to the button to run your code
-  button.addEventListener("click", function() {
+  floatButton.addEventListener("click", function() {
 
     console.log("BUTTON PRESS!")
     

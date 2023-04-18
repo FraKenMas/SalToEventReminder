@@ -10,7 +10,8 @@
       "128": "icon128.png"
     },
 
-    "action": {},
+    "action": {
+    },
 
     "background": {
         "service_worker": "background.js"
@@ -21,7 +22,8 @@
           "matches": ["https://www.salonelibro.it/programma?item=*"],
           "js": ["content.js"],
           "web_accessible_resources": [
-            "content.js"
+            "content.js",
+            "https://use.fontawesome.com/releases/v5.15.3/css/all.css"
           ]
         }
       ]
