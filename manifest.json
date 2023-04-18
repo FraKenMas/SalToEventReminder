@@ -1,8 +1,8 @@
 {
-    "name": "SalTO Event Reminder",
+    "name": "SalTo Event Reminder",
     "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["activeTab", "scripting", "tabs"],
+    "permissions": ["activeTab", "scripting"],
 
     "icons": {
       "16": "icon16.png",

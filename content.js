@@ -16,6 +16,8 @@ function displayButton() {
   let title = "";
   let subtitle = "";
   let description = "";
+  let locationZone = "";
+  const currentUrl = window.location.href;
 
   const dateElem = document.querySelector("h6.date");
   if (dateElem) {
@@ -34,20 +36,22 @@ function displayButton() {
 
   //TODO implementare unione tra descrizione e location (location no geolocalizzata, riportare solo testo)
 
-  const locationZoneElem = document.querySelector("h6.location-zone");
+  const locationZoneElem = document.querySelector(".location-zone");
   if (locationZoneElem) {
-    locationZone = locationZoneElem.innerText.trim();
+    locationZone = locationZoneElem.textContent.trim();
   }
 
   const descriptionDiv = document.querySelector(".description");
   if (descriptionDiv) {
-    description = descriptionDiv.querySelector('p').textContent;
+    const pDescription = descriptionDiv.querySelectorAll('p');
+    description = Array.from(pDescription).map(p => p.textContent).join('\n');
   }
 
   console.log(date);
   console.log(title);
   console.log(subtitle);
   console.log(description);
+  console.log(locationZone);
 
   // Create the button element
   const floatButton = document.createElement("button");
@@ -85,21 +89,17 @@ function displayButton() {
 
           const queryParams = {
             action: 'TEMPLATE',
-            text: title,
+            text: title + " - " + subtitle,
             dates: parseDateString(date),
-            details: description,
-            location: '',
+            details: description + "\nLink all'evento: " + currentUrl,
+            location: locationZone,
             trp: 'false',
-            sprop: '',
-            sprop_name: ''
           };
 
           const queryString = Object.keys(queryParams)
             .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
             .join('&');
           const url = baseUrl + queryString;
-
-          console.log("url", url);
 
           window.open(url, '_blank');
 
