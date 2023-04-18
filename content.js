@@ -9,8 +9,6 @@ if (document.readyState !== 'loading') {
 }
 
 function displayButton() {
-
-  console.log("DISPLAY THE MF BUTTON!")
   
   let date = "";
   let title = "";
@@ -34,8 +32,6 @@ function displayButton() {
     subtitle = subtitleElem.innerText.trim();
   }
 
-  //TODO implementare unione tra descrizione e location (location no geolocalizzata, riportare solo testo)
-
   const locationZoneElem = document.querySelector(".location-zone");
   if (locationZoneElem) {
     locationZone = locationZoneElem.textContent.trim();
@@ -47,11 +43,7 @@ function displayButton() {
     description = Array.from(pDescription).map(p => p.textContent).join('\n');
   }
 
-  console.log(date);
-  console.log(title);
-  console.log(subtitle);
-  console.log(description);
-  console.log(locationZone);
+  const eventDescription = title && subtitle ? title + " - " + subtitle : title;
 
   // Create the button element
   const floatButton = document.createElement("button");
@@ -65,33 +57,31 @@ function displayButton() {
 
   // Add styles to the button
   floatButton.style.position = "fixed";
-  floatButton.style.bottom = "20px";
-  floatButton.style.right = "20px";
-  floatButton.style.width = "50px";
-  floatButton.style.height = "50px";
+  floatButton.style.bottom = "10px";
+  floatButton.style.right = "10px";
+  floatButton.style.width = "48px";
+  floatButton.style.height = "48px";
   floatButton.style.borderRadius = "50%";
   floatButton.style.backgroundColor = "#fabe0a";
   floatButton.style.borderColor = "transparent";
   floatButton.style.color = "#fff";
   floatButton.style.fontSize = "24px";
   floatButton.style.textAlign = "center";
-  floatButton.style.lineHeight = "50px";
+  floatButton.style.lineHeight = "44px";
 
   // Append the button to the body of the page
   document.body.appendChild(floatButton);
 
   // add a click listener to the button to run your code
   floatButton.addEventListener("click", function() {
-
-    console.log("BUTTON PRESS!")
     
     const baseUrl = 'http://www.google.com/calendar/render?';
 
           const queryParams = {
             action: 'TEMPLATE',
-            text: title + " - " + subtitle,
+            text: eventDescription,
             dates: parseDateString(date),
-            details: description + "\nLink all'evento: " + currentUrl,
+            details: description + "\n\nLink all'evento: " + currentUrl,
             location: locationZone,
             trp: 'false',
           };
@@ -108,6 +98,7 @@ function displayButton() {
 }
 
 function parseDateString(dateString) {
+
   // Map Italian month names to their numerical representation
   const monthMap = {
     'gennaio': '01',
@@ -163,4 +154,5 @@ function parseDateString(dateString) {
   const endDateString = date.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
 
   return `${startDateString}/${endDateString}`;
+
 }
