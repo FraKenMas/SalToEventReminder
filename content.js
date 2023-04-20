@@ -1,9 +1,7 @@
 if (document.readyState !== 'loading') {
-  console.log("document alreay ready, code RUN");
   displayButton();
 } else {
   document.addEventListener('DOMContentLoaded', function() {
-    console.log("document was not ready");
     displayButton();
   });
 }
@@ -48,7 +46,7 @@ function displayButton() {
   // Create the button element
   const floatButton = document.createElement("button");
   floatButton.id = "floatButton";
-  floatButton.title = "Add to calendar";
+  floatButton.title = "Aggiungi al calendario";
 
   // Add the "+" icon to the button
   const plusIcon = document.createElement("i");
@@ -89,9 +87,8 @@ function displayButton() {
           const queryString = Object.keys(queryParams)
             .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
             .join('&');
-          const url = baseUrl + queryString;
 
-          window.open(url, '_blank');
+          window.open(baseUrl + queryString, '_blank');
 
   });
 
